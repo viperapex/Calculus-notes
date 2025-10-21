@@ -17,10 +17,12 @@ y = f(x)
 fig, ax = plt.subplots()
 plt.axvline(x=0, color='lightgray')
 plt.axhline(y=0, color='lightgray')
+plt.scatter(2, 10)  # new
+plt.scatter(5, 37, c='orange', zorder=3)  # new
 _ = ax.plot(x, y)
 plt.show()
 
 
-# Indentifying what the slope is at x
-
-print(f(2))
+# Indentifying what the value of y is at x
+z = f(2)
+print(z)
