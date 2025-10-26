@@ -108,3 +108,6 @@ for epoch in range(epochs):
 
     print('Epoch {}, cost {}, m grad {}, b grad {}'.format(epoch, ' % .3g' %
           C.item(), ' % .3g' % m.grad.item(), ' % .3g' % m.grad.item()))
+
+
+regression_plot(x, y, m, b)
