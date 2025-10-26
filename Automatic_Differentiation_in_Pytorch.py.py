@@ -90,5 +90,21 @@ print(b)
 
 regression_plot(x, y, m, b)
 
+# decereased cost
 C = mse(regression(x, m, b), y)
 print(C)
+
+
+epochs = 1000
+for epoch in range(epochs):
+
+    optimizer.zero_grad()  # Reset gradients to zero; else they accumulate
+
+    yhat = regression(x, m, b)  # Step 1
+    C = mse(yhat, y)  # Step 2
+
+    C.backward()
+    optimizer.step()  # Step 4
+
+    print('Epoch {}, cost {}, m grad {}, b grad {}'.format(epoch, ' % .3g' %
+          C.item(), ' % .3g' % m.grad.item(), ' % .3g' % m.grad.item()))
