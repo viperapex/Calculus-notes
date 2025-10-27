@@ -111,3 +111,5 @@ for epoch in range(epochs):
 
 
 regression_plot(x, y, m, b)
+print(m)  # slope
+print(b)  # intercept
