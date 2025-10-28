@@ -61,3 +61,36 @@ plt.xlabel('x')
 plt.ylabel('z', rotation=0)
 _ = ax.plot(xs, zs_wrt_x)
 plt.show()
+
+
+# plotting z with respect to y by varying y vals
+ys = np.linspace(-3, 3, 1000)
+
+# ..while holdinh x constant(e.g. at x =0)
+zs_wrt_y = f(0, ys)
+
+# plotting
+fig, ax = plt.subplots()
+plt.axvline(x=0, color='lightgray')
+plt.axhline(y=0, color='lightgray')
+
+plt.xlabel('y')
+plt.ylabel('z')
+_ = ax.plot(xs, zs_wrt_y)
+
+
+# holding x constant at 2 instead of 0 increases z,
+# but has no impact whatsoever on the slope of z w.r.t. y:
+
+# ..while holdinh x constant now(e.g. at x = 2)
+zs_wrt_y = f(2, ys)  # changed to 2
+
+# plotting
+fig, ax = plt.subplots()
+plt.axvline(x=0, color='lightgray')
+plt.axhline(y=0, color='lightgray')
+
+plt.xlabel('y')
+plt.ylabel('z')
+_ = ax.plot(xs, zs_wrt_y)
+plt.show()
