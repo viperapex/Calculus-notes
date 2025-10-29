@@ -94,3 +94,40 @@ plt.xlabel('y')
 plt.ylabel('z')
 _ = ax.plot(xs, zs_wrt_y)
 plt.show()
+
+
+def delz_dely(my_x, my_y):  # x isn't relevant for *this* partial derivative; it often would be
+    return -2*my_y
+
+
+# y value of interest
+y_samples = [-2, -1, 0, 1, 2]
+
+
+def point_and_tangent_wrt_y(my_ys, my_x, my_y, my_f, fprime, col):
+
+    my_z = my_f(my_x, my_y)  # z as a function of x and y [z=f(x,y)]
+
+    # Slope is partial derivatice of f(x,y) w.r.t. x
+    tangent_m = fprime(my_x, my_y)
+    tangent_b = my_z - tangent_m*my_y  # Line is z=mx+b, so b=z-mx
+    tangent_line = tangent_m*my_ys + tangent_b
+
+    plt.plot(my_ys, tangent_line, c=col,
+             linestyle='dashed', linewidth=0.7, zorder=3)
+
+
+fig, ax = plt.subplots()
+plt.axvline(x=0, color='lightgray')
+plt.axhline(y=0, color='lightgray')
+
+for i, y in enumerate(y_samples):
+    point_and_tangent_wrt_y(ys, 2, y, f, delz_dely, colors[i])
+
+# the slope of z along the y axis is twice the y value and inverted, resulting in the
+# curve opening downward
+plt.ylim(-5, 5)
+plt.xlabel('y')
+plt.ylabel('z', rotation=0)
+_ = ax.plot(xs, zs_wrt_y)
+plt.show()
