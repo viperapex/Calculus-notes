@@ -3,12 +3,14 @@ import matplotlib.pyplot as plt
 import torch
 import math  # for constant pi
 
+# define tensor graph
+
 
 def cylinder_vol(my_r, my_l):
     return math.pi * my_r**2 * my_l
 
 
-# Lets say rhe radius ois 3 meters..
+# Lets say the radius is 3 meters..
 r = torch.tensor(3.).requires_grad_()
 print(r)
 
