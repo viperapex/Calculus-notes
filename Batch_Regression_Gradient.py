@@ -10,7 +10,9 @@ def regression(my_x, my_m, my_b):
 
 
 m = torch.tensor([0.9]).requires_grad_()
+print(m)
 b = torch.tensor([0.1]).requires_grad_()
+print(m)
 
 # Forward pass
 yhats = regression(xs, m, b)
@@ -28,8 +30,24 @@ def mse(my_yhat, my_y):
 C = mse(yhats, ys)
 print(C)
 
-# autodiff to calculate gradient C wrt parameters m and b
+# using autodiff to calculate gradient C wrt parameters m and b
 C.backward()
 
+# param m
 print(m.grad)
+# param b
 print(b.grad)
+
+
+# using manual derivation
+
+# param
+g = 2*1/len(ys)*torch.sum((yhats - ys)*xs)
+print(g)
+
+# param b
+print(2*1/len(ys)*torch.sum(yhats - ys))
+
+
+gradient = torch.tensor([[b.grad.item(), m.grad.item()]]).T
+print(gradient)

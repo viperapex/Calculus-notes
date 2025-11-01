@@ -1,7 +1,6 @@
 import torch
 
 xs = torch.tensor([0, 1, 2, 3, 4, 5, 6, 7.])
-
 ys = torch.tensor([1.86, 1.31, .62, .33, .09, -.67, -1.23, -1.37])
 
 
