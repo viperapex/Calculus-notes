@@ -47,6 +47,8 @@ q = 2*(yhat.item()-y)
 print(q)
 
 
-# GRadient calc
+# Gradient calc Pytorch
 gradient = torch.tensor([[b.grad.item(), m.grad.item()]]).T
 print(gradient)
+
+# All give the same results.
