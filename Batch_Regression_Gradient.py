@@ -51,3 +51,34 @@ print(2*1/len(ys)*torch.sum(yhats - ys))
 
 gradient = torch.tensor([[b.grad.item(), m.grad.item()]]).T
 print(gradient)
+
+
+def labeled_regression_plot(my_x, my_y, my_m, my_b, my_C, include_grad=True):
+    title = 'Cost = {}'.format('%.3g' % my_C.item())
+    if include_grad:
+        xlabel = 'm = {}, m grad = {}'.format(
+            '%.3g' % my_m.item(), '%.3g' % my_m.grad.item())
+        ylabel = 'b = {}, b grad = {}'.format(
+            '%.3g' % my_b.item(), '%.3g' % my_m.grad.item())
+    else:
+        xlabel = 'm = {}'.format('%.3g' % my_m.item())
+        xlabel = 'm = {}'.format('%.3g' % my_m.item())
+
+    fig, ax = plt.subplots()
+
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.ylabel(ylabel)
+
+    ax.scatter(my_x, my_y)
+
+    x_min, x_max = ax.get_xlim()
+    y_min = regression(torch.tensor(x_min), my_m, my_b).item()
+    y_max = regression(torch.tensor(x_max), my_m, my_b).item()
+
+    ax.set_xlim([x_min, x_max])
+    _ = ax.plot([x_min, x_max], [y_min, y_max], c='C01')
+    plt.show()
+
+
+labeled_regression_plot(xs, ys, m, b, C)
