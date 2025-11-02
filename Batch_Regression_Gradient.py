@@ -62,12 +62,12 @@ def labeled_regression_plot(my_x, my_y, my_m, my_b, my_C, include_grad=True):
             '%.3g' % my_b.item(), '%.3g' % my_m.grad.item())
     else:
         xlabel = 'm = {}'.format('%.3g' % my_m.item())
-        xlabel = 'm = {}'.format('%.3g' % my_m.item())
+        ylabel = 'm = {}'.format('%.3g' % my_m.item())
 
     fig, ax = plt.subplots()
 
     plt.title(title)
-    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
     plt.ylabel(ylabel)
 
     ax.scatter(my_x, my_y)
@@ -82,3 +82,12 @@ def labeled_regression_plot(my_x, my_y, my_m, my_b, my_C, include_grad=True):
 
 
 labeled_regression_plot(xs, ys, m, b, C)
+
+
+optimizer = torch.optim.SGD([m, b], lr=0.01)
+optimizer.step()
+
+C = mse(regression(xs, m, b), ys)
+
+# Gradient of C hasn't been recalculated
+labeled_regression_plot(xs, ys, m, b, C, include_grad=False)
