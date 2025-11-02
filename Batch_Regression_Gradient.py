@@ -91,3 +91,19 @@ C = mse(regression(xs, m, b), ys)
 
 # Gradient of C hasn't been recalculated
 labeled_regression_plot(xs, ys, m, b, C, include_grad=False)
+
+
+epochs = 1000
+for epoch in range(epochs):
+
+    optimizer.zero_grad()  # Reset gradients to zero; else they accumulate
+
+    yhats = regression(xs, m, b)  # Step-1
+    C = mse(yhats, ys)  # Step-2
+    C.backward()  # Step-3
+
+    # labeled_regression_plot(xs, ys, m, b, C)
+
+    optimizer.step()  # Step-4
+
+labeled_regression_plot(xs, ys, m, b, C)
